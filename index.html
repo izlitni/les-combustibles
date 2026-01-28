@@ -2,420 +2,427 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cours Interactif : Les Combustibles</title>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Les Combustibles</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
     
     <style>
         :root {
-            --primary: #ff6b6b;
-            --primary-dark: #c0392b;
-            --secondary: #4ecdc4;
-            --secondary-dark: #2ab7a9;
-            --accent: #ffe66d;
-            --dark: #2d3436;
-            --light: #f7f9fc;
-            --white: #ffffff;
-            --radius: 16px;
-            --shadow: 0 8px 30px rgba(0,0,0,0.12);
+            /* Modern Palette */
+            --primary: #FF6B6B;       /* Fire Red */
+            --primary-light: #FFECEC;
+            --secondary: #4ECDC4;     /* Science Teal */
+            --secondary-dark: #29A19C;
+            --dark: #1A253A;          /* Navy Black */
+            --text: #4A5568;          /* Soft Grey */
+            --bg: #F7F9FC;            /* App Background */
+            --white: #FFFFFF;
+            
+            /* UI Constants */
+            --radius-xl: 24px;
+            --radius-md: 16px;
+            --radius-sm: 12px;
+            --shadow: 0 10px 30px -5px rgba(26, 37, 58, 0.08);
+            --shadow-pressed: inset 0 2px 4px rgba(0,0,0,0.1);
         }
+
+        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
-            font-family: 'Open Sans', sans-serif;
-            background-color: var(--light);
-            color: var(--dark);
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg);
+            color: var(--text);
             margin: 0;
             padding: 0;
-            line-height: 1.8;
-            scroll-behavior: smooth;
+            line-height: 1.6;
         }
 
-        h1, h2, h3 { font-family: 'Montserrat', sans-serif; margin: 0; }
+        h1, h2, h3 { font-family: 'Poppins', sans-serif; margin: 0; color: var(--dark); }
 
-        /* HEADER */
+        /* --- HEADER --- */
         header {
-            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
-            color: var(--white);
-            padding: 4rem 1rem;
-            text-align: center;
-            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
-            margin-bottom: 2rem;
+            background: var(--white);
+            padding: 2rem 1.5rem;
+            border-bottom-left-radius: var(--radius-xl);
+            border-bottom-right-radius: var(--radius-xl);
+            box-shadow: var(--shadow);
             position: relative;
+            z-index: 10;
+            text-align: center;
         }
-        header h1 { font-size: 2.5rem; text-transform: uppercase; letter-spacing: 2px; text-shadow: 0 4px 10px rgba(0,0,0,0.2); }
 
-        /* LAYOUT */
-        .container { max-width: 1000px; margin: 0 auto; padding: 0 20px 60px; }
-        
+        header h1 {
+            font-size: 1.8rem;
+            font-weight: 800;
+            background: linear-gradient(90deg, var(--primary), #FFD93D);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 0.5rem;
+        }
+
+        header p { font-size: 0.9rem; color: #A0AEC0; font-weight: 500; margin: 0; }
+
+        /* --- LAYOUT --- */
+        .container {
+            padding: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
         .card {
             background: var(--white);
-            border-radius: var(--radius);
+            border-radius: var(--radius-xl);
+            padding: 1.5rem;
+            margin-bottom: 2rem;
             box-shadow: var(--shadow);
-            padding: 2.5rem;
-            margin-bottom: 3rem;
-            border-top: 6px solid var(--secondary);
             position: relative;
-        }
-
-        .section-lab { border-top-color: var(--primary); background: #fffdfd; }
-
-        h2 { font-size: 1.8rem; color: var(--dark); margin-bottom: 1.5rem; border-bottom: 3px solid #eee; padding-bottom: 5px; display: inline-block; }
-
-        /* --- INTERACTIVE LAB 1: FIRE SIMULATOR --- */
-        .lab-container {
-            background: #2d3436;
-            color: white;
-            border-radius: var(--radius);
-            padding: 2rem;
-            text-align: center;
-            margin-top: 20px;
-        }
-
-        .flame-box {
-            height: 150px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        /* CSS Animation for Fire */
-        .fire {
-            font-size: 80px;
-            filter: drop-shadow(0 0 20px #ff6b6b);
-            animation: flicker 1s infinite alternate;
-            transition: opacity 0.5s, transform 0.5s;
-        }
-        .fire.off { opacity: 0.2; transform: scale(0.5); filter: none; }
-
-        @keyframes flicker {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.1); opacity: 0.9; }
-            100% { transform: scale(0.95); opacity: 1; }
-        }
-
-        .controls { display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; }
-        
-        .toggle-btn {
-            background: #444;
-            border: 2px solid #666;
-            color: white;
-            padding: 10px 20px;
-            border-radius: 50px;
-            cursor: pointer;
-            transition: 0.3s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            font-weight: bold;
-        }
-        .toggle-btn.active { background: var(--secondary); border-color: var(--secondary-dark); }
-        .toggle-btn:hover { transform: translateY(-2px); }
-        
-        .status-msg { margin-top: 15px; font-style: italic; min-height: 30px; color: var(--accent); }
-
-        /* --- INTERACTIVE LAB 2: DISTILLATION SLIDER --- */
-        .slider-container { margin: 30px 0; text-align: center; }
-        
-        input[type=range] {
-            width: 100%; max-width: 400px;
-            height: 10px; background: #ddd;
-            border-radius: 5px; outline: none;
-            -webkit-appearance: none;
-        }
-        input[type=range]::-webkit-slider-thumb {
-            -webkit-appearance: none; appearance: none;
-            width: 25px; height: 25px;
-            background: var(--primary); cursor: pointer; border-radius: 50%;
-        }
-
-        .tower-visual {
-            display: flex; flex-direction: column;
-            max-width: 350px; margin: 20px auto;
-            border: 3px solid #555; border-radius: 12px;
             overflow: hidden;
         }
-        .t-level {
-            padding: 15px; color: white; font-weight: bold;
-            transition: 0.3s; opacity: 0.4;
+
+        /* Decorative line top of card */
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 6px;
+            background: #EDF2F7;
+        }
+        .card.fire::before { background: var(--primary); }
+        .card.science::before { background: var(--secondary); }
+
+        .card h2 {
+            font-size: 1.3rem;
+            margin-bottom: 1.5rem;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+
+        /* --- ICONS & GRIDS --- */
+        .grid-cards {
+            display: grid;
+            grid-template-columns: 1fr; /* Mobile default */
+            gap: 1rem;
+        }
+        @media(min-width: 600px) { .grid-cards { grid-template-columns: repeat(3, 1fr); } }
+
+        .mini-card {
+            background: var(--bg);
+            padding: 1rem;
+            border-radius: var(--radius-md);
+            text-align: center;
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+        
+        .icon-circle {
+            width: 50px; height: 50px;
+            background: var(--white);
+            border-radius: 50%;
+            display: flex; align-items: center; justify-content: center;
+            font-size: 1.5rem;
+            margin: 0 auto 10px;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+        }
+
+        /* --- INTERACTIVE LAB (General) --- */
+        .lab-zone {
+            background: var(--dark);
+            color: white;
+            padding: 1.5rem;
+            border-radius: var(--radius-md);
+            margin-top: 1rem;
+            text-align: center;
+        }
+
+        /* --- FIRE LAB --- */
+        .fire-visual {
+            height: 120px;
+            display: flex; align-items: center; justify-content: center;
+        }
+        .fire-emoji {
+            font-size: 4rem;
+            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+        .fire-off { opacity: 0.2; transform: scale(0.5); filter: grayscale(1); }
+        .fire-on { opacity: 1; transform: scale(1.1); filter: drop-shadow(0 0 20px #FF6B6B); animation: pulse 1s infinite; }
+
+        @keyframes pulse { 0%{transform:scale(1);} 50%{transform:scale(1.1);} 100%{transform:scale(1);} }
+
+        .controls-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            gap: 8px;
+            margin-top: 15px;
+        }
+
+        .toggle-btn {
+            background: rgba(255,255,255,0.1);
+            border: none;
+            color: rgba(255,255,255,0.6);
+            padding: 12px 5px;
+            border-radius: var(--radius-sm);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.8rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: 0.2s;
+            display: flex; flex-direction: column; align-items: center; gap: 5px;
+        }
+        .toggle-btn.active {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 0 15px rgba(255, 107, 107, 0.4);
+        }
+        .toggle-btn span { font-size: 1.2rem; }
+
+        /* --- SLIDER LAB --- */
+        .slider-wrapper { padding: 10px 0; }
+        
+        input[type=range] {
+            -webkit-appearance: none;
+            width: 100%;
+            height: 8px;
+            background: rgba(255,255,255,0.2);
+            border-radius: 10px;
+            outline: none;
+        }
+        input[type=range]::-webkit-slider-thumb {
+            -webkit-appearance: none;
+            width: 28px; height: 28px;
+            background: var(--white);
+            border: 3px solid var(--secondary);
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+
+        .tower-stack {
+            display: flex; flex-direction: column;
+            gap: 4px;
+            margin-top: 20px;
+        }
+        .t-layer {
+            padding: 10px;
+            font-size: 0.85rem;
+            font-weight: 600;
+            border-radius: 6px;
+            opacity: 0.3;
+            transition: 0.3s;
             display: flex; justify-content: space-between;
         }
-        .t-level.highlight { opacity: 1; transform: scale(1.05); z-index: 10; box-shadow: 0 0 15px rgba(0,0,0,0.3); }
+        .t-layer.active { opacity: 1; transform: scale(1.02); padding-left: 15px; }
 
-        .l-gas { background: #ffeaa7; color: #444; }
-        .l-ess { background: #fab1a0; color: #444; }
-        .l-ker { background: #ff7675; }
-        .l-gaz { background: #d63031; }
-        .l-bit { background: #2d3436; }
-
-        /* --- INTERACTIVE LAB 3: QUIZ --- */
-        .quiz-area { text-align: center; margin-top: 20px; }
-        .quiz-card {
-            background: #e3f2fd; padding: 20px;
-            border-radius: 12px; display: inline-block;
-            width: 100%; max-width: 400px;
+        /* --- QUIZ --- */
+        .quiz-btn {
+            display: block; width: 100%;
+            background: var(--bg);
+            border: 2px solid transparent;
+            padding: 15px;
+            margin-bottom: 10px;
+            border-radius: var(--radius-sm);
+            font-weight: 600;
+            font-size: 1rem;
+            color: var(--dark);
+            text-align: left;
+            cursor: pointer;
+            transition: 0.2s;
         }
-        .quiz-options button {
-            display: block; width: 100%; margin: 10px 0;
-            padding: 12px; border: none; border-radius: 8px;
-            background: white; cursor: pointer; font-size: 1rem;
-            transition: 0.2s; font-weight: 600;
-        }
-        .quiz-options button:hover { background: var(--secondary); color: white; }
-        
-        .feedback { margin-top: 15px; font-weight: bold; }
-        .correct { color: #27ae60; }
-        .wrong { color: #c0392b; }
+        .quiz-btn:active { transform: scale(0.98); }
+        .quiz-result { margin-top: 15px; font-weight: bold; text-align: center; }
 
-        /* General Grids */
-        .grid-3 { display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; }
-        .exp-item { background: #fff; border: 1px solid #eee; border-radius: 12px; padding: 1.5rem; text-align: center; }
-
-        /* Footer */
-        footer { text-align: center; padding: 30px; color: #888; font-size: 0.9rem; }
-        
-        @media (max-width: 600px) {
-            header h1 { font-size: 1.8rem; }
-            .controls { flex-direction: column; }
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 3rem 1.5rem 2rem;
+            color: #A0AEC0;
+            font-size: 0.8rem;
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>Les Combustibles</h1>
-    <p>Module Interactif de Physique-Chimie</p>
+    <h1>🔥 Les Combustibles</h1>
+    <p>Module interactif de poche</p>
 </header>
 
 <div class="container">
 
-    <!-- I. CONDITIONS (EXPERIENCE) -->
-    <section class="card">
-        <h2>I. Expériences : Les conditions du feu</h2>
-        <div class="grid-3">
-            <div class="exp-item">
-                <div style="font-size:3rem">🕯️</div>
-                <h3>Solide</h3>
-                <p>La bougie s'éteint sous le verre.</p>
-                <small>Il faut de l'air (O₂).</small>
-            </div>
-            <div class="exp-item">
-                <div style="font-size:3rem">⛽</div>
-                <h3>Liquide</h3>
-                <p>L'essence ne s'allume pas seule.</p>
-                <small>Il faut une étincelle.</small>
-            </div>
-            <div class="exp-item">
-                <div style="font-size:3rem">💨</div>
-                <h3>Gaz</h3>
-                <p>Le gaz s'éteint sans air.</p>
-                <small>Il faut un mélange.</small>
-            </div>
-        </div>
-    </section>
-
-    <!-- INTERACTIVE LAB 1: FIRE TRIANGLE -->
-    <section class="card section-lab">
-        <h2>🧪 Labo 1 : Le Triangle du Feu</h2>
-        <p>Essayez d'allumer le feu en activant les 3 éléments. Si un élément manque, le feu s'éteint !</p>
+    <!-- I. FIRE TRIANGLE -->
+    <div class="card fire">
+        <h2>I. Le Triangle du Feu</h2>
+        <p style="font-size: 0.95rem;">Pour brûler, un feu a besoin de 3 amis. Si l'un part, le feu meurt.</p>
         
-        <div class="lab-container">
-            <!-- The Fire Animation -->
-            <div class="flame-box">
-                <div id="fireAnim" class="fire off">🔥</div>
+        <div class="lab-zone">
+            <div class="fire-visual">
+                <div id="fireEmoji" class="fire-emoji fire-off">🔥</div>
             </div>
+            <div id="fireText" style="margin-bottom: 10px; font-size: 0.9rem; opacity: 0.8;">Feu éteint...</div>
             
-            <div class="status-msg" id="fireStatus">Le feu est éteint. Il manque des éléments.</div>
-
-            <!-- Controls -->
-            <div class="controls">
+            <div class="controls-grid">
                 <button class="toggle-btn" id="btnFuel" onclick="toggleFire('fuel')">
-                    🪵 Combustible
+                    <span>🪵</span>Bois
                 </button>
-                <button class="toggle-btn" id="btnOxy" onclick="toggleFire('oxy')">
-                    🌬️ Comburant (Air)
+                <button class="toggle-btn" id="btnAir" onclick="toggleFire('air')">
+                    <span>🌬️</span>Air
                 </button>
                 <button class="toggle-btn" id="btnHeat" onclick="toggleFire('heat')">
-                    ⚡ Énergie (Chaleur)
+                    <span>⚡</span>Feu
                 </button>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- II. DEFINITION & CLASSIFICATION -->
-    <section class="card">
-        <h2>II. Genres et Usages</h2>
-        <p>On classe les combustibles selon leur état physique :</p>
-        <ul>
-            <li><strong>Solides :</strong> Bois, Charbon, Papier.</li>
-            <li><strong>Liquides :</strong> Essence, Pétrole, Alcool.</li>
-            <li><strong>Gazeux :</strong> Butane, Propane, Méthane.</li>
-        </ul>
+    <!-- II. EXPERIENCES (Condensed for Mobile) -->
+    <div class="card science">
+        <h2>II. Expériences</h2>
+        <div class="grid-cards">
+            <div class="mini-card">
+                <div class="icon-circle">🕯️</div>
+                <strong>Solide</strong>
+                <p style="font-size:0.8rem; margin:5px 0 0;">Besoin de chaleur pour démarrer.</p>
+            </div>
+            <div class="mini-card">
+                <div class="icon-circle">💧</div>
+                <strong>Liquide</strong>
+                <p style="font-size:0.8rem; margin:5px 0 0;">Besoin d'une étincelle.</p>
+            </div>
+            <div class="mini-card">
+                <div class="icon-circle">💨</div>
+                <strong>Gaz</strong>
+                <p style="font-size:0.8rem; margin:5px 0 0;">Explose si mélangé à l'air.</p>
+            </div>
+        </div>
+    </div>
 
-        <!-- INTERACTIVE LAB 3: QUIZ -->
-        <div class="quiz-area">
-            <h3>🎮 Jeu Rapide : Trie les combustibles !</h3>
-            <div class="quiz-card">
-                <p id="quizQuestion" style="font-size: 1.2rem; font-weight: bold;">Le Charbon</p>
-                <div class="quiz-options">
-                    <button onclick="checkAnswer('solide')">🧱 Solide</button>
-                    <button onclick="checkAnswer('liquide')">💧 Liquide</button>
-                    <button onclick="checkAnswer('gaz')">💨 Gaz</button>
+    <!-- III. PETROLEUM -->
+    <div class="card science">
+        <h2>III. La Tour de Distillation</h2>
+        <p style="font-size: 0.9rem;">On chauffe le pétrole pour séparer ses composants. Glisse le doigt !</p>
+        
+        <div class="lab-zone" style="background: linear-gradient(135deg, #2d3436, #000);">
+            <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
+                <span>🌡️ Chaleur</span>
+                <span id="tempVal">20°C</span>
+            </div>
+            
+            <div class="slider-wrapper">
+                <input type="range" id="tempRange" min="20" max="400" value="20" oninput="updateDistillation()">
+            </div>
+
+            <div class="tower-stack">
+                <div id="layer1" class="t-layer" style="background:#FFEAA7; color:#333;">
+                    <span>Gaz (Cuisine)</span> <small>20°C</small>
                 </div>
-                <div id="quizResult" class="feedback"></div>
+                <div id="layer2" class="t-layer" style="background:#FAB1A0; color:#333;">
+                    <span>Essence (Auto)</span> <small>100°C</small>
+                </div>
+                <div id="layer3" class="t-layer" style="background:#FF7675; color:white;">
+                    <span>Kérosène (Avion)</span> <small>180°C</small>
+                </div>
+                <div id="layer4" class="t-layer" style="background:#D63031; color:white;">
+                    <span>Fioul (Chauffage)</span> <small>260°C</small>
+                </div>
+                <div id="layer5" class="t-layer" style="background:#636E72; color:white;">
+                    <span>Bitume (Route)</span> <small>350°C</small>
+                </div>
             </div>
         </div>
-    </section>
+    </div>
 
-    <!-- III. PETROLEUM LAB -->
-    <section class="card section-lab">
-        <h2>🧪 Labo 2 : La Distillation du Pétrole</h2>
-        <p>Le pétrole brut est chauffé. Glissez le curseur de température pour voir quel produit sort de la tour !</p>
-
-        <div class="slider-container">
-            <label for="tempSlider"><strong>Température : <span id="tempDisplay">20</span>°C</strong></label><br><br>
-            <!-- Slider range covers the tower levels -->
-            <input type="range" id="tempSlider" min="20" max="400" value="20" oninput="updateTower()">
-        </div>
-
-        <div class="tower-visual">
-            <div id="lvl1" class="t-level l-gas">
-                <span>⬆️ Gaz (Butane)</span> <small>&lt; 25°C</small>
-            </div>
-            <div id="lvl2" class="t-level l-ess">
-                <span>🚗 Essence</span> <small>40-150°C</small>
-            </div>
-            <div id="lvl3" class="t-level l-ker">
-                <span>✈️ Kérosène</span> <small>150-250°C</small>
-            </div>
-            <div id="lvl4" class="t-level l-gaz">
-                <span>🚛 Gazole / Fioul</span> <small>250-350°C</small>
-            </div>
-            <div id="lvl5" class="t-level l-bit">
-                <span>🛣️ Bitume</span> <small>&gt; 350°C</small>
-            </div>
-        </div>
-        <p id="towerInfo" style="text-align: center; margin-top: 15px; font-weight: bold; color: var(--primary);">
-            C'est froid : On récupère les gaz.
-        </p>
-    </section>
+    <!-- IV. QUIZ -->
+    <div class="card fire">
+        <h2>🎮 Quiz Rapide</h2>
+        <p id="qText" style="font-weight:600; margin-bottom:15px;">Le Gaz Naturel est :</p>
+        
+        <button class="quiz-btn" onclick="answer(this, false)">🧱 Un Solide</button>
+        <button class="quiz-btn" onclick="answer(this, false)">💧 Un Liquide</button>
+        <button class="quiz-btn" onclick="answer(this, true)">💨 Un Gaz</button>
+        
+        <div id="qResult" class="quiz-result"></div>
+    </div>
 
 </div>
 
 <footer>
-    <p>Cours interactif créé pour les élèves curieux.</p>
+    Fait avec ❤️ pour l'éducation<br>
+    Version Mobile
 </footer>
 
-<!-- JAVASCRIPT LOGIC -->
 <script>
-    // --- LABO 1: FIRE TRIANGLE ---
-    let state = {
-        fuel: false,
-        oxy: false,
-        heat: false
-    };
-
+    // --- FIRE LOGIC ---
+    let fireState = { fuel: false, air: false, heat: false };
+    
     function toggleFire(type) {
-        // Toggle state
-        state[type] = !state[type];
+        fireState[type] = !fireState[type];
         
-        // Update Button Styles
-        const btn = document.getElementById(type === 'fuel' ? 'btnFuel' : type === 'oxy' ? 'btnOxy' : 'btnHeat');
-        if(state[type]) {
-            btn.classList.add('active');
-            btn.innerHTML = btn.innerHTML.replace("❌", "✅"); // Add check if needed or just color
-        } else {
-            btn.classList.remove('active');
-        }
+        // Update Button Visuals
+        const btn = document.getElementById(type === 'fuel' ? 'btnFuel' : type === 'air' ? 'btnAir' : 'btnHeat');
+        if(fireState[type]) btn.classList.add('active');
+        else btn.classList.remove('active');
 
-        // Check conditions
-        const fireElem = document.getElementById('fireAnim');
-        const statusElem = document.getElementById('fireStatus');
+        // Check Fire
+        const emoji = document.getElementById('fireEmoji');
+        const txt = document.getElementById('fireText');
 
-        if (state.fuel && state.oxy && state.heat) {
-            fireElem.classList.remove('off');
-            statusElem.textContent = "🔥 COMBUSTION ACTIVÉE ! Le feu brûle.";
-            statusElem.style.color = "#e67e22";
+        if(fireState.fuel && fireState.air && fireState.heat) {
+            emoji.className = "fire-emoji fire-on";
+            txt.innerText = "🔥 COMBUSTION EN COURS !";
+            txt.style.color = "#FF6B6B";
+            txt.style.fontWeight = "bold";
         } else {
-            fireElem.classList.add('off');
-            
-            // Generate helpful hint
-            let missing = [];
-            if(!state.fuel) missing.push("Combustible");
-            if(!state.oxy) missing.push("Air");
-            if(!state.heat) missing.push("Chaleur");
-            
-            statusElem.textContent = "Le feu est éteint. Il manque : " + missing.join(", ");
-            statusElem.style.color = "#7f8c8d";
+            emoji.className = "fire-emoji fire-off";
+            txt.innerText = "Il manque quelque chose...";
+            txt.style.color = "white";
+            txt.style.fontWeight = "normal";
         }
     }
 
-    // --- LABO 2: DISTILLATION TOWER ---
-    function updateTower() {
-        const val = parseInt(document.getElementById('tempSlider').value);
-        document.getElementById('tempDisplay').innerText = val;
+    // --- DISTILLATION LOGIC ---
+    function updateDistillation() {
+        const val = parseInt(document.getElementById('tempRange').value);
+        document.getElementById('tempVal').innerText = val + "°C";
+
+        // Reset
+        for(let i=1; i<=5; i++) document.getElementById('layer'+i).classList.remove('active');
+
+        let active = 0;
+        if(val < 50) active = 1;
+        else if(val < 150) active = 2;
+        else if(val < 220) active = 3;
+        else if(val < 320) active = 4;
+        else active = 5;
+
+        document.getElementById('layer'+active).classList.add('active');
+    }
+
+    // --- QUIZ LOGIC ---
+    function answer(btn, isCorrect) {
+        // Reset colors
+        const allBtns = document.querySelectorAll('.quiz-btn');
+        allBtns.forEach(b => b.style.background = 'var(--bg)');
+        allBtns.forEach(b => b.style.color = 'var(--dark)');
+        allBtns.forEach(b => b.style.borderColor = 'transparent');
+
+        const res = document.getElementById('qResult');
         
-        // Reset all
-        const levels = ['lvl1', 'lvl2', 'lvl3', 'lvl4', 'lvl5'];
-        levels.forEach(l => document.getElementById(l).classList.remove('highlight'));
-        
-        const info = document.getElementById('towerInfo');
-        let activeId = '';
-
-        if (val < 40) {
-            activeId = 'lvl1';
-            info.innerText = "À basse température : On récupère les gaz pour la cuisine (Butane).";
-        } else if (val < 150) {
-            activeId = 'lvl2';
-            info.innerText = "Chauffage léger : On obtient l'Essence pour les voitures.";
-        } else if (val < 250) {
-            activeId = 'lvl3';
-            info.innerText = "Chauffage moyen : C'est le Kérosène pour les avions !";
-        } else if (val < 350) {
-            activeId = 'lvl4';
-            info.innerText = "Fort chauffage : Gazole pour les camions et Fioul pour le chauffage.";
+        if(isCorrect) {
+            btn.style.background = '#C6F6D5';
+            btn.style.color = '#22543D';
+            btn.style.borderColor = '#48BB78';
+            res.innerText = "✅ Bravo ! C'est la bonne réponse.";
+            res.style.color = "green";
         } else {
-            activeId = 'lvl5';
-            info.innerText = "Extrême chaleur : Il reste le Bitume pour faire les routes.";
-        }
-
-        if(activeId) document.getElementById(activeId).classList.add('highlight');
-    }
-
-    // --- LABO 3: MINI QUIZ ---
-    const questions = [
-        { q: "Le Bois", a: "solide" },
-        { q: "L'Essence", a: "liquide" },
-        { q: "Le Propane", a: "gaz" },
-        { q: "Le Charbon", a: "solide" },
-        { q: "Le Gazole", a: "liquide" }
-    ];
-    let currentQ = 0;
-
-    function loadQuestion() {
-        document.getElementById('quizQuestion').innerText = questions[currentQ].q;
-        document.getElementById('quizResult').innerText = "";
-    }
-
-    function checkAnswer(userAns) {
-        const feedback = document.getElementById('quizResult');
-        if(userAns === questions[currentQ].a) {
-            feedback.innerHTML = "✅ Correct !";
-            feedback.className = "feedback correct";
-            // Next question after delay
-            setTimeout(() => {
-                currentQ = (currentQ + 1) % questions.length;
-                loadQuestion();
-            }, 1000);
-        } else {
-            feedback.innerHTML = "❌ Essaye encore !";
-            feedback.className = "feedback wrong";
+            btn.style.background = '#FED7D7';
+            btn.style.color = '#822727';
+            btn.style.borderColor = '#F56565';
+            res.innerText = "❌ Non, essaie encore.";
+            res.style.color = "red";
         }
     }
 
-    // Initialize Quiz
-    loadQuestion();
+    // Init
+    updateDistillation();
 </script>
 
 </body>
