@@ -1,0 +1,437 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cours : Les Combustibles</title>
+    <!-- Importing Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Palette Definition */
+            --primary: #ff6b6b;      /* Soft Red */
+            --primary-dark: #c0392b; /* Deep Red */
+            --secondary: #4ecdc4;    /* Teal */
+            --accent: #ffe66d;       /* Yellow */
+            --dark: #2d3436;
+            --light: #f7f9fc;
+            --white: #ffffff;
+            
+            --shadow-sm: 0 4px 6px rgba(0,0,0,0.05);
+            --shadow-md: 0 10px 20px rgba(0,0,0,0.08);
+            --radius: 16px;
+        }
+
+        /* Base Styles */
+        body {
+            font-family: 'Open Sans', sans-serif;
+            background-color: var(--light);
+            color: var(--dark);
+            margin: 0;
+            padding: 0;
+            line-height: 1.8;
+        }
+
+        h1, h2, h3 {
+            font-family: 'Montserrat', sans-serif;
+            margin: 0;
+        }
+
+        /* Hero Header */
+        header {
+            background: linear-gradient(135deg, var(--primary-dark), var(--primary));
+            color: var(--white);
+            padding: 4rem 1rem;
+            text-align: center;
+            clip-path: polygon(0 0, 100% 0, 100% 85%, 0 100%);
+            margin-bottom: 2rem;
+        }
+
+        header h1 {
+            font-size: 3rem;
+            font-weight: 800;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            margin-bottom: 0.5rem;
+            text-shadow: 0 4px 10px rgba(0,0,0,0.2);
+        }
+
+        header .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            font-weight: 400;
+        }
+
+        /* Layout */
+        .container {
+            max-width: 1100px;
+            margin: 0 auto;
+            padding: 0 20px 60px;
+        }
+
+        /* Card Component */
+        .card {
+            background: var(--white);
+            border-radius: var(--radius);
+            box-shadow: var(--shadow-sm);
+            padding: 2.5rem;
+            margin-bottom: 3rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            border-top: 5px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-md);
+        }
+
+        /* Section Specific Colors */
+        .section-exp { border-top-color: var(--secondary); }
+        .section-def { border-top-color: var(--primary); }
+        .section-petrole { border-top-color: #2d3436; }
+
+        .card h2 {
+            font-size: 1.8rem;
+            color: var(--dark);
+            margin-bottom: 1.5rem;
+            display: inline-block;
+            border-bottom: 3px solid #eee;
+            padding-bottom: 5px;
+        }
+
+        /* Expérience Grid */
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+        }
+
+        .exp-item {
+            background: #fdfdfd;
+            border: 1px solid #eee;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .exp-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            display: block;
+            filter: drop-shadow(0 4px 6px rgba(0,0,0,0.1));
+        }
+
+        /* Fire Triangle Visual */
+        .triangle-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 2rem;
+        }
+
+        .triangle-point {
+            background: var(--dark);
+            color: white;
+            padding: 20px;
+            border-radius: 12px;
+            width: 200px;
+            text-align: center;
+            position: relative;
+        }
+
+        .triangle-point::after {
+            content: '+';
+            position: absolute;
+            right: -25px;
+            top: 50%;
+            transform: translateY(-50%);
+            color: var(--primary);
+            font-weight: bold;
+            font-size: 1.5rem;
+        }
+
+        .triangle-point:last-child::after { content: '='; }
+        
+        .fire-result {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: var(--primary);
+        }
+
+        /* Distillation Column Styling */
+        .distillation-wrapper {
+            display: flex;
+            flex-direction: column; /* Mobile first */
+            gap: 30px;
+            align-items: center;
+        }
+
+        @media(min-width: 768px) {
+            .distillation-wrapper {
+                flex-direction: row;
+                align-items: flex-start;
+            }
+        }
+
+        .text-content { flex: 1; }
+
+        .tower {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: var(--shadow-md);
+            border: 2px solid #ddd;
+        }
+
+        .tower-level {
+            padding: 15px;
+            color: white;
+            font-weight: 600;
+            text-align: center;
+            font-size: 0.9rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        /* Gradient symbolizing temperature */
+        .l-1 { background: #ffeaa7; color: #444; } /* 20°C */
+        .l-2 { background: #fab1a0; color: #444; } /* 70°C */
+        .l-3 { background: #ff7675; } /* 170°C */
+        .l-4 { background: #d63031; } /* 270°C */
+        .l-5 { background: #636e72; } /* 350°C+ */
+
+        /* Badges for Genres */
+        .badge {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 50px;
+            font-weight: 600;
+            margin-right: 10px;
+            font-size: 0.9rem;
+            margin-bottom: 10px;
+        }
+        .badge-solid { background: #dfe6e9; color: #2d3436; }
+        .badge-liquid { background: #74b9ff; color: white; }
+        .badge-gas { background: #ffeaa7; color: #d35400; }
+
+        /* Steps Timeline */
+        .steps {
+            list-style: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+        .steps li {
+            position: relative;
+            padding-left: 50px;
+            margin-bottom: 20px;
+        }
+        .steps li::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: -20px;
+            width: 2px;
+            background: #ddd;
+        }
+        .steps li:last-child::before { display: none; }
+        .step-num {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 32px;
+            height: 32px;
+            background: var(--secondary);
+            color: white;
+            border-radius: 50%;
+            text-align: center;
+            line-height: 32px;
+            font-weight: bold;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            color: #636e72;
+            padding: 20px;
+            font-size: 0.8rem;
+        }
+
+        /* Responsive Tweaks */
+        @media (max-width: 600px) {
+            header h1 { font-size: 2rem; }
+            .triangle-container { flex-direction: column; gap: 10px; }
+            .triangle-point { width: 100%; box-sizing: border-box; }
+            .triangle-point::after { content: '⬇'; right: auto; left: 50%; top: auto; bottom: -25px; transform: translateX(-50%); }
+            .triangle-point:last-child::after { content: '='; }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div class="header-content">
+        <h1>Les Combustibles</h1>
+        <div class="subtitle">Chimie & Physique &bull; Niveau Collège</div>
+    </div>
+</header>
+
+<div class="container">
+
+    <!-- I. EXPERIENCE -->
+    <section class="card section-exp">
+        <h2>I. Expériences : Comprendre le feu</h2>
+        <div class="grid-3">
+            <div class="exp-item">
+                <span class="exp-icon">🕯️</span>
+                <h3>Le Solide</h3>
+                <p><strong>Bougie sous verre :</strong><br>La flamme s'éteint rapidement.</p>
+                <div style="color: var(--primary-dark); font-size:0.9rem; margin-top:10px;">
+                    <strong>Conclusion :</strong><br>Un solide a besoin d'air (O₂) et d'une source de chaleur initiale pour brûler.
+                </div>
+            </div>
+
+            <div class="exp-item">
+                <span class="exp-icon">⛽</span>
+                <h3>Le Liquide</h3>
+                <p><strong>Essence :</strong><br>Ne brûle pas si on prive d'air.</p>
+                <div style="color: var(--primary-dark); font-size:0.9rem; margin-top:10px;">
+                    <strong>Conclusion :</strong><br>Nécessite de l'oxygène et une étincelle (énergie) pour déclencher le feu.
+                </div>
+            </div>
+
+            <div class="exp-item">
+                <span class="exp-icon">🔥</span>
+                <h3>Le Gaz</h3>
+                <p><strong>Butane :</strong><br>S'éteint dès qu'on coupe l'arrivée d'air.</p>
+                <div style="color: var(--primary-dark); font-size:0.9rem; margin-top:10px;">
+                    <strong>Conclusion :</strong><br>Le gaz seul ne brûle pas. Il lui faut un mélange avec l'air + allumage.
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- II. DEFINITION -->
+    <section class="card section-def">
+        <h2>II. Le Triangle du Feu</h2>
+        <p style="font-size: 1.1rem;">Pour qu'il y ait combustion (feu), il faut <strong>impérativement</strong> la réunion de 3 éléments. Si on en enlève un, le feu s'éteint.</p>
+        
+        <div class="triangle-container">
+            <div class="triangle-point">
+                <div style="font-size:1.5rem">🪵</div>
+                <strong>Combustible</strong><br><small>Bois, Gaz, Essence</small>
+            </div>
+            
+            <div class="triangle-point">
+                <div style="font-size:1.5rem">🌬️</div>
+                <strong>Comburant</strong><br><small>Oxygène de l'air</small>
+            </div>
+            
+            <div class="triangle-point">
+                <div style="font-size:1.5rem">⚡</div>
+                <strong>Énergie</strong><br><small>Chaleur, Étincelle</small>
+            </div>
+
+            <div class="fire-result">
+                🔥 COMBUSTION
+            </div>
+        </div>
+    </section>
+
+    <!-- III & IV. GENRES & ORIGINS -->
+    <section class="card section-exp">
+        <h2>III & IV. Types et Usages</h2>
+        
+        <div style="margin-bottom: 30px;">
+            <h3>Les 3 états de la matière</h3>
+            <div style="margin-top:10px;">
+                <span class="badge badge-solid">Solides (Bois, Charbon)</span>
+                <span class="badge badge-liquid">Liquides (Pétrole, Fioul)</span>
+                <span class="badge badge-gas">Gazeux (Butane, Propane)</span>
+            </div>
+        </div>
+
+        <div class="grid-3" style="text-align: left;">
+            <div>
+                <h3 style="color: var(--secondary);">🌍 Origines</h3>
+                <ul style="padding-left: 20px;">
+                    <li><strong>Naturels :</strong> Bois, charbon de terre.</li>
+                    <li><strong>Transformés :</strong> Essence, charbon de bois.</li>
+                </ul>
+            </div>
+            <div>
+                <h3 style="color: var(--secondary);">🏭 Usages</h3>
+                <ul style="padding-left: 20px;">
+                    <li><strong>Maison :</strong> Cuisine, Chauffage.</li>
+                    <li><strong>Transport :</strong> Voitures, Avions.</li>
+                    <li><strong>Industrie :</strong> Centrales électriques.</li>
+                </ul>
+            </div>
+            <div style="background: #eafbea; padding: 15px; border-radius: 8px;">
+                <strong>💡 Exemple :</strong><br>
+                Le gaz brûle dans la cuisinière (Combustion) → Il dégage de la chaleur pour cuire les pâtes (Énergie utile).
+            </div>
+        </div>
+    </section>
+
+    <!-- V. PETROLE -->
+    <section class="card section-petrole">
+        <h2>V. Le Pétrole : De la terre au moteur</h2>
+        
+        <div class="distillation-wrapper">
+            <div class="text-content">
+                <h3>1. Extraction et Transport</h3>
+                <ul class="steps">
+                    <li><span class="step-num">1</span> <strong>Forage :</strong> On perce le sol pour trouver les poches.</li>
+                    <li><span class="step-num">2</span> <strong>Pompage :</strong> Le pétrole brut remonte.</li>
+                    <li><span class="step-num">3</span> <strong>Transport :</strong> Oléoducs ou super-pétroliers vers l'usine.</li>
+                    <li><span class="step-num">4</span> <strong>Raffinage :</strong> Séparation des composants.</li>
+                </ul>
+
+                <h3>2. La Distillation Fractionnée</h3>
+                <p>Le pétrole est chauffé. Les produits se séparent selon leur poids et température d'ébullition.</p>
+            </div>
+
+            <!-- Visual Representation of Distillation Tower -->
+            <div class="tower">
+                <div class="tower-level l-1">
+                    <span>Gaz (Butane)</span>
+                    <small>20°C</small>
+                </div>
+                <div class="tower-level l-2">
+                    <span>Essence (Auto)</span>
+                    <small>70°C</small>
+                </div>
+                <div class="tower-level l-3">
+                    <span>Kérosène (Avion)</span>
+                    <small>170°C</small>
+                </div>
+                <div class="tower-level l-4">
+                    <span>Gazole / Fioul</span>
+                    <small>270°C</small>
+                </div>
+                <div class="tower-level l-5">
+                    <span>Bitume (Route)</span>
+                    <small>350°C+</small>
+                </div>
+            </div>
+        </div>
+    </section>
+
+</div>
+
+<footer>
+    <p>Document de cours &copy; 2023 - Sciences Physiques</p>
+</footer>
+
+</body>
+</html>
