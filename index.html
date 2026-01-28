@@ -2,428 +2,357 @@
 <html lang="fr">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Les Combustibles</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;800&family=Inter:wght@400;500&display=swap" rel="stylesheet">
-    
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cours : Les Combustibles</title>
     <style>
         :root {
-            /* Modern Palette */
-            --primary: #FF6B6B;       /* Fire Red */
-            --primary-light: #FFECEC;
-            --secondary: #4ECDC4;     /* Science Teal */
-            --secondary-dark: #29A19C;
-            --dark: #1A253A;          /* Navy Black */
-            --text: #4A5568;          /* Soft Grey */
-            --bg: #F7F9FC;            /* App Background */
-            --white: #FFFFFF;
-            
-            /* UI Constants */
-            --radius-xl: 24px;
-            --radius-md: 16px;
-            --radius-sm: 12px;
-            --shadow: 0 10px 30px -5px rgba(26, 37, 58, 0.08);
-            --shadow-pressed: inset 0 2px 4px rgba(0,0,0,0.1);
+            --primary: #e65100; /* Deep Orange */
+            --primary-light: #ffcc80;
+            --secondary: #263238; /* Dark Blue/Grey */
+            --accent: #ffab00; /* Amber */
+            --bg-body: #f5f5f5;
+            --bg-card: #ffffff;
+            --text-main: #333;
+            --text-light: #666;
+            --radius: 12px;
+            --shadow: 0 4px 6px rgba(0,0,0,0.1);
         }
-
-        * { box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
 
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--bg);
-            color: var(--text);
+            font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            color: var(--text-main);
+            background-color: var(--bg-body);
             margin: 0;
             padding: 0;
-            line-height: 1.6;
         }
 
-        h1, h2, h3 { font-family: 'Poppins', sans-serif; margin: 0; color: var(--dark); }
-
-        /* --- HEADER --- */
+        /* Header Styling */
         header {
-            background: var(--white);
-            padding: 2rem 1.5rem;
-            border-bottom-left-radius: var(--radius-xl);
-            border-bottom-right-radius: var(--radius-xl);
-            box-shadow: var(--shadow);
-            position: relative;
-            z-index: 10;
+            background: linear-gradient(135deg, var(--secondary) 0%, var(--primary) 100%);
+            color: white;
+            padding: 3rem 1rem;
             text-align: center;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
         }
 
         header h1 {
-            font-size: 1.8rem;
-            font-weight: 800;
-            background: linear-gradient(90deg, var(--primary), #FFD93D);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 0.5rem;
+            margin: 0;
+            font-size: 2.5rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
         }
 
-        header p { font-size: 0.9rem; color: #A0AEC0; font-weight: 500; margin: 0; }
+        header p {
+            margin-top: 10px;
+            font-size: 1.2rem;
+            opacity: 0.9;
+        }
 
-        /* --- LAYOUT --- */
+        /* Main Container */
         .container {
-            padding: 1.5rem;
-            max-width: 800px;
-            margin: 0 auto;
+            max-width: 1000px;
+            margin: -30px auto 40px;
+            padding: 0 20px;
         }
 
+        /* Card General Styling */
         .card {
-            background: var(--white);
-            border-radius: var(--radius-xl);
-            padding: 1.5rem;
-            margin-bottom: 2rem;
+            background: var(--bg-card);
+            border-radius: var(--radius);
             box-shadow: var(--shadow);
-            position: relative;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            border-left: 5px solid var(--primary);
+        }
+
+        h2 {
+            color: var(--primary);
+            border-bottom: 2px solid var(--primary-light);
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+
+        h3 {
+            color: var(--secondary);
+            margin-top: 1.5rem;
+        }
+
+        /* Section I: Experiments Grid */
+        .experiments-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .exp-box {
+            background: #fff3e0;
+            padding: 1.5rem;
+            border-radius: var(--radius);
+            border: 1px solid #ffe0b2;
+        }
+
+        .exp-icon {
+            font-size: 2rem;
+            display: block;
+            margin-bottom: 10px;
+        }
+
+        /* Section II: Fire Triangle */
+        .fire-triangle {
+            display: flex;
+            justify-content: space-around;
+            flex-wrap: wrap;
+            background: var(--secondary);
+            color: white;
+            padding: 20px;
+            border-radius: var(--radius);
+            margin-top: 20px;
+        }
+
+        .triangle-point {
+            text-align: center;
+            flex: 1;
+            min-width: 150px;
+            padding: 10px;
+        }
+        
+        .triangle-point span {
+            font-size: 2rem;
+            display: block;
+        }
+
+        /* Section III: Genres */
+        .genres-list {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .genre-item {
+            flex: 1;
+            min-width: 200px;
+            background: #e0f7fa;
+            color: #006064;
+            padding: 15px;
+            border-radius: 8px;
+            font-weight: bold;
+            text-align: center;
+        }
+
+        /* Section V: Distillation Column Visualization */
+        .distillation-column {
+            display: flex;
+            flex-direction: column;
+            width: 100%;
+            max-width: 400px;
+            margin: 20px auto;
+            border: 2px solid #555;
+            border-radius: 8px;
             overflow: hidden;
         }
 
-        /* Decorative line top of card */
-        .card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0; right: 0;
-            height: 6px;
-            background: #EDF2F7;
+        .layer {
+            padding: 15px;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            font-size: 0.9rem;
         }
-        .card.fire::before { background: var(--primary); }
-        .card.science::before { background: var(--secondary); }
 
-        .card h2 {
-            font-size: 1.3rem;
-            margin-bottom: 1.5rem;
+        .layer.gas { background: #ffecb3; color: #444; } /* Top - Cool */
+        .layer.essence { background: #ffca28; color: #333; }
+        .layer.kerosene { background: #ff9800; }
+        .layer.gazole { background: #e65100; }
+        .layer.residue { background: #3e2723; } /* Bottom - Hot/Heavy */
+
+        /* Responsive timeline for extraction */
+        .steps {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+        .step {
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 15px;
         }
-
-        /* --- ICONS & GRIDS --- */
-        .grid-cards {
-            display: grid;
-            grid-template-columns: 1fr; /* Mobile default */
-            gap: 1rem;
-        }
-        @media(min-width: 600px) { .grid-cards { grid-template-columns: repeat(3, 1fr); } }
-
-        .mini-card {
-            background: var(--bg);
-            padding: 1rem;
-            border-radius: var(--radius-md);
-            text-align: center;
-            border: 1px solid rgba(0,0,0,0.03);
-        }
-        
-        .icon-circle {
-            width: 50px; height: 50px;
-            background: var(--white);
-            border-radius: 50%;
-            display: flex; align-items: center; justify-content: center;
-            font-size: 1.5rem;
-            margin: 0 auto 10px;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.05);
-        }
-
-        /* --- INTERACTIVE LAB (General) --- */
-        .lab-zone {
-            background: var(--dark);
-            color: white;
-            padding: 1.5rem;
-            border-radius: var(--radius-md);
-            margin-top: 1rem;
-            text-align: center;
-        }
-
-        /* --- FIRE LAB --- */
-        .fire-visual {
-            height: 120px;
-            display: flex; align-items: center; justify-content: center;
-        }
-        .fire-emoji {
-            font-size: 4rem;
-            transition: 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-        .fire-off { opacity: 0.2; transform: scale(0.5); filter: grayscale(1); }
-        .fire-on { opacity: 1; transform: scale(1.1); filter: drop-shadow(0 0 20px #FF6B6B); animation: pulse 1s infinite; }
-
-        @keyframes pulse { 0%{transform:scale(1);} 50%{transform:scale(1.1);} 100%{transform:scale(1);} }
-
-        .controls-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr 1fr;
-            gap: 8px;
-            margin-top: 15px;
-        }
-
-        .toggle-btn {
-            background: rgba(255,255,255,0.1);
-            border: none;
-            color: rgba(255,255,255,0.6);
-            padding: 12px 5px;
-            border-radius: var(--radius-sm);
-            font-family: 'Inter', sans-serif;
-            font-size: 0.8rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: 0.2s;
-            display: flex; flex-direction: column; align-items: center; gap: 5px;
-        }
-        .toggle-btn.active {
+        .step-number {
             background: var(--primary);
             color: white;
-            box-shadow: 0 0 15px rgba(255, 107, 107, 0.4);
-        }
-        .toggle-btn span { font-size: 1.2rem; }
-
-        /* --- SLIDER LAB --- */
-        .slider-wrapper { padding: 10px 0; }
-        
-        input[type=range] {
-            -webkit-appearance: none;
-            width: 100%;
-            height: 8px;
-            background: rgba(255,255,255,0.2);
-            border-radius: 10px;
-            outline: none;
-        }
-        input[type=range]::-webkit-slider-thumb {
-            -webkit-appearance: none;
-            width: 28px; height: 28px;
-            background: var(--white);
-            border: 3px solid var(--secondary);
+            width: 30px;
+            height: 30px;
             border-radius: 50%;
-            cursor: pointer;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            flex-shrink: 0;
         }
 
-        .tower-stack {
-            display: flex; flex-direction: column;
-            gap: 4px;
-            margin-top: 20px;
-        }
-        .t-layer {
-            padding: 10px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            border-radius: 6px;
-            opacity: 0.3;
-            transition: 0.3s;
-            display: flex; justify-content: space-between;
-        }
-        .t-layer.active { opacity: 1; transform: scale(1.02); padding-left: 15px; }
-
-        /* --- QUIZ --- */
-        .quiz-btn {
-            display: block; width: 100%;
-            background: var(--bg);
-            border: 2px solid transparent;
-            padding: 15px;
-            margin-bottom: 10px;
-            border-radius: var(--radius-sm);
-            font-weight: 600;
-            font-size: 1rem;
-            color: var(--dark);
-            text-align: left;
-            cursor: pointer;
-            transition: 0.2s;
-        }
-        .quiz-btn:active { transform: scale(0.98); }
-        .quiz-result { margin-top: 15px; font-weight: bold; text-align: center; }
-
-        /* --- FOOTER --- */
+        /* Footer */
         footer {
             text-align: center;
-            padding: 3rem 1.5rem 2rem;
-            color: #A0AEC0;
-            font-size: 0.8rem;
+            padding: 20px;
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 600px) {
+            header h1 { font-size: 1.8rem; }
+            .fire-triangle { flex-direction: column; gap: 20px; }
         }
     </style>
 </head>
 <body>
 
 <header>
-    <h1>🔥 Les Combustibles</h1>
-    <p>Module interactif de poche</p>
+    <h1>Les Combustibles</h1>
+    <p>Physique - Chimie &bull; Collège</p>
 </header>
 
 <div class="container">
 
-    <!-- I. FIRE TRIANGLE -->
-    <div class="card fire">
-        <h2>I. Le Triangle du Feu</h2>
-        <p style="font-size: 0.95rem;">Pour brûler, un feu a besoin de 3 amis. Si l'un part, le feu meurt.</p>
-        
-        <div class="lab-zone">
-            <div class="fire-visual">
-                <div id="fireEmoji" class="fire-emoji fire-off">🔥</div>
-            </div>
-            <div id="fireText" style="margin-bottom: 10px; font-size: 0.9rem; opacity: 0.8;">Feu éteint...</div>
+    <!-- Section I -->
+    <section class="card" id="experience">
+        <h2>I. Expériences : Les conditions de combustion</h2>
+        <div class="experiments-grid">
             
-            <div class="controls-grid">
-                <button class="toggle-btn" id="btnFuel" onclick="toggleFire('fuel')">
-                    <span>🪵</span>Bois
-                </button>
-                <button class="toggle-btn" id="btnAir" onclick="toggleFire('air')">
-                    <span>🌬️</span>Air
-                </button>
-                <button class="toggle-btn" id="btnHeat" onclick="toggleFire('heat')">
-                    <span>⚡</span>Feu
-                </button>
+            <!-- Exp 1 -->
+            <div class="exp-box">
+                <span class="exp-icon">🕯️</span>
+                <h3>1. Cas d'un solide</h3>
+                <p><strong>Matériel :</strong> Bougie + Verre.</p>
+                <p><strong>Action :</strong> On allume la bougie et on la recouvre.</p>
+                <p><strong>Observation :</strong> La flamme s'éteint par manque d'oxygène.</p>
+                <p><em>Conclusion :</em> Le solide a besoin d'air (comburant) et de chaleur pour brûler.</p>
+            </div>
+
+            <!-- Exp 2 -->
+            <div class="exp-box">
+                <span class="exp-icon">💧</span>
+                <h3>2. Cas d'un liquide</h3>
+                <p><strong>Exemple :</strong> Essence.</p>
+                <p><strong>Observation :</strong> Sans air autour, l'essence ne brûle pas.</p>
+                <p><em>Conclusion :</em> Il faut de l'oxygène et une étincelle (énergie) pour l'enflammer.</p>
+            </div>
+
+            <!-- Exp 3 -->
+            <div class="exp-box">
+                <span class="exp-icon">💨</span>
+                <h3>3. Cas d'un gaz</h3>
+                <p><strong>Exemple :</strong> Butane (réchaud).</p>
+                <p><strong>Observation :</strong> Si on coupe l'arrivée d'air, la flamme s'éteint.</p>
+                <p><em>Conclusion :</em> Le gaz ne brûle pas sans oxygène ni allumage.</p>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- II. EXPERIENCES (Condensed for Mobile) -->
-    <div class="card science">
-        <h2>II. Expériences</h2>
-        <div class="grid-cards">
-            <div class="mini-card">
-                <div class="icon-circle">🕯️</div>
-                <strong>Solide</strong>
-                <p style="font-size:0.8rem; margin:5px 0 0;">Besoin de chaleur pour démarrer.</p>
+    <!-- Section II -->
+    <section class="card" id="definition">
+        <h2>II. Définition d'un combustible</h2>
+        <p>Un combustible est une substance capable de brûler et de produire de l'énergie (chaleur, lumière, mouvement).</p>
+        
+        <h3>Le Triangle du Feu</h3>
+        <p>Pour qu'une combustion ait lieu, <strong>3 éléments</strong> sont indispensables :</p>
+        <div class="fire-triangle">
+            <div class="triangle-point">
+                <span>🪵</span>
+                <strong>Combustible</strong><br><small>(ex: Bois, Gaz)</small>
             </div>
-            <div class="mini-card">
-                <div class="icon-circle">💧</div>
-                <strong>Liquide</strong>
-                <p style="font-size:0.8rem; margin:5px 0 0;">Besoin d'une étincelle.</p>
+            <div class="triangle-point">
+                <span>🌬️</span>
+                <strong>Comburant</strong><br><small>(Oxygène de l'air)</small>
             </div>
-            <div class="mini-card">
-                <div class="icon-circle">💨</div>
-                <strong>Gaz</strong>
-                <p style="font-size:0.8rem; margin:5px 0 0;">Explose si mélangé à l'air.</p>
+            <div class="triangle-point">
+                <span>🔥</span>
+                <strong>Énergie</strong><br><small>(Flamme, Étincelle)</small>
             </div>
         </div>
-    </div>
+    </section>
 
-    <!-- III. PETROLEUM -->
-    <div class="card science">
-        <h2>III. La Tour de Distillation</h2>
-        <p style="font-size: 0.9rem;">On chauffe le pétrole pour séparer ses composants. Glisse le doigt !</p>
-        
-        <div class="lab-zone" style="background: linear-gradient(135deg, #2d3436, #000);">
-            <div style="display:flex; justify-content:space-between; margin-bottom:10px;">
-                <span>🌡️ Chaleur</span>
-                <span id="tempVal">20°C</span>
-            </div>
-            
-            <div class="slider-wrapper">
-                <input type="range" id="tempRange" min="20" max="400" value="20" oninput="updateDistillation()">
-            </div>
+    <!-- Section III -->
+    <section class="card" id="genres">
+        <h2>III. Les genres de combustibles</h2>
+        <ul class="genres-list">
+            <li class="genre-item" style="background:#d7ccc8; color:#4e342e;">🪨 Solides<br><small>Bois, Charbon, Déchets</small></li>
+            <li class="genre-item" style="background:#e3f2fd; color:#0d47a1;">💧 Liquides<br><small>Pétrole, Essence, Fioul</small></li>
+            <li class="genre-item" style="background:#fff3e0; color:#e65100;">☁️ Gazeux<br><small>Gaz naturel, Butane, Propane</small></li>
+        </ul>
+    </section>
 
-            <div class="tower-stack">
-                <div id="layer1" class="t-layer" style="background:#FFEAA7; color:#333;">
-                    <span>Gaz (Cuisine)</span> <small>20°C</small>
-                </div>
-                <div id="layer2" class="t-layer" style="background:#FAB1A0; color:#333;">
-                    <span>Essence (Auto)</span> <small>100°C</small>
-                </div>
-                <div id="layer3" class="t-layer" style="background:#FF7675; color:white;">
-                    <span>Kérosène (Avion)</span> <small>180°C</small>
-                </div>
-                <div id="layer4" class="t-layer" style="background:#D63031; color:white;">
-                    <span>Fioul (Chauffage)</span> <small>260°C</small>
-                </div>
-                <div id="layer5" class="t-layer" style="background:#636E72; color:white;">
-                    <span>Bitume (Route)</span> <small>350°C</small>
-                </div>
+    <!-- Section IV -->
+    <section class="card" id="origines">
+        <h2>IV. Origines et Usages</h2>
+        <div class="experiments-grid">
+            <div>
+                <h3>1. Origines</h3>
+                <ul>
+                    <li><strong>Naturels :</strong> Bois, charbon, gaz naturel.</li>
+                    <li><strong>Transformés :</strong> Essence, fioul, alcool.</li>
+                </ul>
+            </div>
+            <div>
+                <h3>2. Usages principaux</h3>
+                <ul>
+                    <li>🏠 <strong>Maison :</strong> Chauffage, cuisine.</li>
+                    <li>🚗 <strong>Transport :</strong> Voitures, avions, bateaux.</li>
+                    <li>🏭 <strong>Industrie :</strong> Usines, électricité.</li>
+                </ul>
             </div>
         </div>
-    </div>
+        <div style="margin-top: 15px; padding: 10px; background: #eee; border-radius: 8px;">
+            <strong>Exemple simple :</strong> 
+            Le bois brûle (cheminée) → Chaleur/Lumière. <br>
+            Le gaz brûle (cuisinière) → Chauffe les aliments.
+        </div>
+    </section>
 
-    <!-- IV. QUIZ -->
-    <div class="card fire">
-        <h2>🎮 Quiz Rapide</h2>
-        <p id="qText" style="font-weight:600; margin-bottom:15px;">Le Gaz Naturel est :</p>
+    <!-- Section V -->
+    <section class="card" id="petrole">
+        <h2>V. Combustibles issus du pétrole</h2>
         
-        <button class="quiz-btn" onclick="answer(this, false)">🧱 Un Solide</button>
-        <button class="quiz-btn" onclick="answer(this, false)">💧 Un Liquide</button>
-        <button class="quiz-btn" onclick="answer(this, true)">💨 Un Gaz</button>
+        <h3>1. Les produits dérivés</h3>
+        <p>Essence (voitures), Gazole (camions), Fioul (chauffage), Kérosène (avions), Gaz liquéfiés.</p>
+
+        <h3>2. De la terre à la pompe</h3>
+        <div class="steps">
+            <div class="step">
+                <div class="step-number">1</div>
+                <div><strong>Forage :</strong> On perce le sol pour atteindre les poches.</div>
+            </div>
+            <div class="step">
+                <div class="step-number">2</div>
+                <div><strong>Pompage :</strong> Le pétrole brut remonte à la surface.</div>
+            </div>
+            <div class="step">
+                <div class="step-number">3</div>
+                <div><strong>Transport :</strong> Envoi vers les raffineries (oléoducs, bateaux).</div>
+            </div>
+            <div class="step">
+                <div class="step-number">4</div>
+                <div><strong>Raffinage :</strong> La distillation fractionnée.</div>
+            </div>
+        </div>
+
+        <h3>3. La tour de distillation</h3>
+        <p>À la raffinerie, on chauffe le pétrole. Les produits se séparent selon leur température d'ébullition (du plus léger au plus lourd) :</p>
         
-        <div id="qResult" class="quiz-result"></div>
-    </div>
+        <div class="distillation-column">
+            <div class="layer gas">⬆️ Gaz (Butane, Propane) <br> <small>Haut de la tour (Basses températures)</small></div>
+            <div class="layer essence">Essence, Kérosène</div>
+            <div class="layer gazole">Gazole, Fioul</div>
+            <div class="layer residue">⬇️ Bitume, Mazout <br> <small>Bas de la tour (Résidus lourds)</small></div>
+        </div>
+    </section>
 
 </div>
 
 <footer>
-    Fait avec ❤️ pour l'éducation<br>
-    Version Mobile
+    <p>Fiche de cours générée pour support éducatif.</p>
 </footer>
-
-<script>
-    // --- FIRE LOGIC ---
-    let fireState = { fuel: false, air: false, heat: false };
-    
-    function toggleFire(type) {
-        fireState[type] = !fireState[type];
-        
-        // Update Button Visuals
-        const btn = document.getElementById(type === 'fuel' ? 'btnFuel' : type === 'air' ? 'btnAir' : 'btnHeat');
-        if(fireState[type]) btn.classList.add('active');
-        else btn.classList.remove('active');
-
-        // Check Fire
-        const emoji = document.getElementById('fireEmoji');
-        const txt = document.getElementById('fireText');
-
-        if(fireState.fuel && fireState.air && fireState.heat) {
-            emoji.className = "fire-emoji fire-on";
-            txt.innerText = "🔥 COMBUSTION EN COURS !";
-            txt.style.color = "#FF6B6B";
-            txt.style.fontWeight = "bold";
-        } else {
-            emoji.className = "fire-emoji fire-off";
-            txt.innerText = "Il manque quelque chose...";
-            txt.style.color = "white";
-            txt.style.fontWeight = "normal";
-        }
-    }
-
-    // --- DISTILLATION LOGIC ---
-    function updateDistillation() {
-        const val = parseInt(document.getElementById('tempRange').value);
-        document.getElementById('tempVal').innerText = val + "°C";
-
-        // Reset
-        for(let i=1; i<=5; i++) document.getElementById('layer'+i).classList.remove('active');
-
-        let active = 0;
-        if(val < 50) active = 1;
-        else if(val < 150) active = 2;
-        else if(val < 220) active = 3;
-        else if(val < 320) active = 4;
-        else active = 5;
-
-        document.getElementById('layer'+active).classList.add('active');
-    }
-
-    // --- QUIZ LOGIC ---
-    function answer(btn, isCorrect) {
-        // Reset colors
-        const allBtns = document.querySelectorAll('.quiz-btn');
-        allBtns.forEach(b => b.style.background = 'var(--bg)');
-        allBtns.forEach(b => b.style.color = 'var(--dark)');
-        allBtns.forEach(b => b.style.borderColor = 'transparent');
-
-        const res = document.getElementById('qResult');
-        
-        if(isCorrect) {
-            btn.style.background = '#C6F6D5';
-            btn.style.color = '#22543D';
-            btn.style.borderColor = '#48BB78';
-            res.innerText = "✅ Bravo ! C'est la bonne réponse.";
-            res.style.color = "green";
-        } else {
-            btn.style.background = '#FED7D7';
-            btn.style.color = '#822727';
-            btn.style.borderColor = '#F56565';
-            res.innerText = "❌ Non, essaie encore.";
-            res.style.color = "red";
-        }
-    }
-
-    // Init
-    updateDistillation();
-</script>
 
 </body>
 </html>
